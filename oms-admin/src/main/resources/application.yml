@@ -1,0 +1,46 @@
+#security:
+#  basic:
+#    enabled: false
+server:
+  port: 8005
+spring:
+  application:
+    name: api-admin
+  datasource:
+    url: jdbc:mysql://localhost:3306/clouddo?useUnicode=true&characterEncoding=utf8
+    username: root
+    password: 123456
+    initial-size: 10                              # 初始化连接
+    max-idle: 20                                  # 最大空闲连接
+    min-idle: 5                                   # 最小空闲连接
+    max-wait: 10000                               # 超时等待时间以毫秒为单位 6000毫秒/1000等于60秒
+    max-active: 50                                # 最大连接数量
+    validation-query: SELECT 1                    # 检测数据库的查询语句
+    test-on-borrow: false
+    test-while-idle: true
+    min-evictable-idle-time-millis: 600000        #每隔五分钟检测空闲超过10分钟的连接
+    time-between-eviction-runs-millis: 36400
+    log-abandoned: true                           # 是否在自动回收超时连接的时候打印连接的超时错误
+    remove-abandoned: true                        # 是否自动回收超时连接
+    remove-abandoned-timeout: 1800                # 超时时间(以秒数为单位)
+  cloud:
+    refresh:
+      refreshable: none
+      
+  jackson:
+    date-format: yyyy-MM-dd
+    time-zone: GMT+8
+mybatis:
+  mapper-locations: mapper/**Mapper.xml
+  configuration:
+      map-underscore-to-camel-case: true
+
+eureka:
+  instance:
+      instance-id: ${spring.application.name}
+      prefer-ip-address: true
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8001/eureka/
+#logging:
+#  level: debug

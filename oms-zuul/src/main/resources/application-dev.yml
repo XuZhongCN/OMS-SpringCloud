@@ -1,0 +1,19 @@
+server:
+  port: 8002
+spring:
+  application:
+    name: zuul
+  servlet:
+    multipart:
+      max-file-size: 100Mb
+      max-request-size: 100Mb
+  ribbon:
+    ReadTimeout: 60000
+    ConnectTimeout: 60000
+eureka:
+  instance:
+    prefer-ip-address:  true
+    instance-id: ${spring.application.name}
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8001/eureka/

@@ -1,0 +1,33 @@
+server:
+  port: 8006
+spring:
+  application:
+    name: api-cms
+  datasource:
+    url: jdbc:mysql://localhost:3306/clouddo?useUnicode=true&characterEncoding=utf8
+    username: root
+    password: 123456
+  cloud:
+    refresh:
+      refreshable: none
+  jackson:
+    date-format: yyyy-MM-dd
+    time-zone: GMT+8
+  servlet:
+    multipart:
+      max-file-size: 100Mb
+      max-request-size: 100Mb
+mybatis:
+  mapper-locations: mapper/**Mapper.xml
+  configuration:
+      map-underscore-to-camel-case: true
+app:
+  filePath: c:/var/uploaded_files/
+  pre: /files
+eureka:
+  instance:
+    instance-id: ${spring.application.name}
+    prefer-ip-address: true
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8001/eureka/

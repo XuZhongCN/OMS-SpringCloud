@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: api-base
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/clouddo?useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&transformedBitIsBoolean=true
+    username: root
+    password: 123456
+  cloud:
+    refresh:
+      refreshable: none
+      
+eureka:
+  instance:
+      instance-id: ${spring.application.name}
+      prefer-ip-address: true
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8001/eureka/
+
+
+mybatis:
+  mapper-locations: mapper/**Mapper.xml
+  configuration:
+      map-underscore-to-camel-case: true
+
+      
